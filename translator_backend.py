@@ -25,7 +25,7 @@ def download_nltk_data_once():
             elif resource == 'wordnet':
                 nltk.data.find(f'corpora/{resource}.zip') # or just 'corpora/{resource}'
             print(f"NLTK resource '{resource}' already available.")
-        except nltk.downloader.DownloadError: # This is the specific exception for missing data
+        except LookupError: # This is the correct exception for missing data
             print(f"NLTK resource '{resource}' not found. Attempting to download...")
             try:
                 nltk.download(resource, quiet=True) # quiet=True for less verbose output in Streamlit
